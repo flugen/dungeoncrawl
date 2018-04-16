@@ -5,6 +5,9 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
 
+import dungeon.Dungeon;
+import dungeon.DungeonFactory;
+
 import java.nio.*;
 
 import static org.lwjgl.glfw.Callbacks.*;
@@ -111,7 +114,9 @@ public class Main {
 		}
 	
 	public static void main(String[] args) {
-		new Main().run();
+//		new Main().run();
+		Dungeon d = DungeonFactory.createDungeon();
+		d.print();
 	}
 
 }

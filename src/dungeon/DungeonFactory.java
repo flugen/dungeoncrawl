@@ -8,4 +8,10 @@ public class DungeonFactory {
 		return d;
 	}
 	
+	private void generateMajorRooms() {
+		
+	}
+	
+	
+	
 }
