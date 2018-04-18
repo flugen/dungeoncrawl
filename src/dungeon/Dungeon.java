@@ -1,9 +1,14 @@
 package dungeon;
 
+import java.util.ArrayList;
+
+import dungeonroom.DungeonRoom;
+
 public class Dungeon {
 	
 	private int width,height;
-	private Tile[][] tiles;
+	protected Tile[][] tiles;
+	protected ArrayList<DungeonRoom> rooms;
 
 	protected Dungeon() {
 		this(500,200);
@@ -19,6 +24,19 @@ public class Dungeon {
 				tiles[i][j] = Tile.space;
 			}
 		}
+		rooms = new ArrayList<>();
+	}
+	
+	public void addRoom(DungeonRoom r) {
+		rooms.add(r);
+	}
+	
+	public ArrayList<DungeonRoom> getRooms(){
+		return rooms;
+	}
+	
+	public void placeRooms() {
+		
 	}
 	
 	public boolean set(int x,int y,Tile t) {

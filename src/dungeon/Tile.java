@@ -6,7 +6,11 @@ public enum Tile{
 	dirt_floor(','),
 	stone_wall('O'),
 	brick_wall('B'),
-	space('*')
+	door('D'),
+	entrance('E'),
+	space('*'),
+	item('I'),
+	feature('F'),
 	;
 	public char p;
 	private Tile(char pic) {
