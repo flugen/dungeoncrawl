@@ -2,11 +2,13 @@ package dungeon;
 
 import java.util.ArrayList;
 
-import dungeonroom.DungeonRoom;
+import dungeon.dungeonroom.DungeonRoom;
+import util.bbox;
 
 public class Dungeon {
 	
 	private int width,height;
+	private bbox dbox;
 	protected Tile[][] tiles;
 	protected ArrayList<DungeonRoom> rooms;
 
@@ -25,6 +27,7 @@ public class Dungeon {
 			}
 		}
 		rooms = new ArrayList<>();
+		dbox = new bbox(0, 0, w, h);
 	}
 	
 	public void addRoom(DungeonRoom r) {
@@ -36,7 +39,26 @@ public class Dungeon {
 	}
 	
 	public void placeRooms() {
-		
+		Tile[][] tiles;
+		bbox box;
+		for (DungeonRoom room : rooms) {
+			tiles = room.getTiles();
+			box = room.getBox();
+			for (int i = 0; i < tiles.length; i++) {
+				for (int j = 0; j < tiles[i].length; j++) {
+					this.tiles[i+box.y][j+box.x] = tiles[i][j];
+				}
+			}
+		}
+	}
+	
+
+	public boolean checkOverlap(bbox box) {
+		for (DungeonRoom room : rooms) {
+			if(room.getBox().checkOverlap(box))
+				return true;
+		}
+		return !(box.x>=dbox.x&&box.x1<dbox.x1&&box.y>dbox.y&&box.y1<dbox.y1);
 	}
 	
 	public boolean set(int x,int y,Tile t) {

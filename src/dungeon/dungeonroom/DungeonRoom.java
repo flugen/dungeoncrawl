@@ -1,4 +1,4 @@
-package dungeonroom;
+package dungeon.dungeonroom;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,13 +28,25 @@ public abstract class DungeonRoom {
 		
 	}
 	
-	protected abstract void addMajorItem();
-	protected abstract void addMinorItem();
-	protected abstract void addMajorFeature();
-	protected abstract void addMinorFeature();
+	public abstract void addMajorItem();
+	public abstract void addMinorItem();
+	public abstract void addMajorFeature();
+	public abstract void addMinorFeature();
 	
+	public Tile[][] getTiles(){
+		return room.clone();
+	}
 	
-	protected ArrayList<Point2D> getWalls() {
+	public bbox getBox() {
+		try {
+			return (bbox)box.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			return new bbox(box.x, box.y, box.w, box.h);
+		}
+	}
+	
+	public ArrayList<Point2D> getWalls() {
 		return walls;
 	}
 

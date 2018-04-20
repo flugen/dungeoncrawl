@@ -9,5 +9,9 @@ public class Point2D{
 	public boolean equals(Object o) {
 		return (o instanceof Point2D) && ((Point2D)o).x==x && ((Point2D)o).y==y;
 	}
+	@Override
+	public int hashCode() {
+		return x+y<<16;
+	}
 	
 }

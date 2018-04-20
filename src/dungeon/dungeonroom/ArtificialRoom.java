@@ -1,4 +1,4 @@
-package dungeonroom;
+package dungeon.dungeonroom;
 
 import java.util.ArrayList;
 
@@ -34,19 +34,19 @@ public class ArtificialRoom extends DungeonRoom {
 			switch(d4()) {
 			case 1:
 				x=0;
-				y = dN(room[0].length);
+				y = dN(room[0].length-1);
 				break;
 			case 2:
 				x=room[0].length-1;
-				y = dN(room[0].length);
+				y = dN(room[0].length-1);
 				break;
 			case 3:
 				y=0;
-				x = dN(room[0].length);
+				x = dN(room[0].length-1);
 				break;
 			case 4:
 				y=room[0].length-1;
-				x = dN(room[0].length);
+				x = dN(room[0].length-1);
 				break;
 			}
 			room[y][x] = Tile.door;
@@ -55,37 +55,37 @@ public class ArtificialRoom extends DungeonRoom {
 	}
 
 	@Override
-	protected void addMajorItem() {
+	public void addMajorItem() {
 		//TODO rework feature placement so it's less random 
 		Item i=FeatureFactory.generateItem(true);
-		i.location = new Point2D(dN(box.w), dN(box.h));
+		i.location = new Point2D(dN(box.w-1), dN(box.h-1));
 		features.put(i.location, i);
 		room[i.location.x][i.location.y]=Tile.item;
 	}
 
 	@Override
-	protected void addMinorItem() {
+	public void addMinorItem() {
 		Item i=FeatureFactory.generateItem(false);
-		i.location = new Point2D(dN(box.w), dN(box.h));
+		i.location = new Point2D(dN(box.w-1), dN(box.h-1));
 		features.put(i.location, i);
 		room[i.location.x][i.location.y]=Tile.item;
 		
 	}
 
 	@Override
-	protected void addMajorFeature() {
+	public void addMajorFeature() {
 		//TODO rework feature placement so it's less random 
 		Item i=FeatureFactory.generateItem(true);
-		i.location = new Point2D(dN(box.w), dN(box.h));
+		i.location = new Point2D(dN(box.w-1), dN(box.h-1));
 		features.put(i.location, i);
 		room[i.location.x][i.location.y]=Tile.feature;
 		
 	}
 
 	@Override
-	protected void addMinorFeature() {
+	public void addMinorFeature() {
 		Item i=FeatureFactory.generateItem(false);
-		i.location = new Point2D(dN(box.w), dN(box.h));
+		i.location = new Point2D(dN(box.w-1), dN(box.h-1));
 		features.put(i.location, i);
 		room[i.location.x][i.location.y]=Tile.feature;
 		

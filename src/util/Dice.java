@@ -61,7 +61,7 @@ public class Dice {
 	
 	public static int dN(int N,int n) {
 		int sum=0;
-		for (int i = 0; i < N; i++) {
+		for (int i = 0; i < n; i++) {
 			sum+=dN(N);
 		}
 		return sum;

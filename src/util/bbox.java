@@ -2,19 +2,23 @@ package util;
 
 import java.util.ArrayList;
 
-public class bbox{
-	public final int x,y,w,h;
+public class bbox implements Cloneable{
+	public final int x,y,w,h,x1,y1;
 	public bbox() {
 		x=0;
 		y=0;
 		w=1;
 		h=1;
+		x1=1;
+		y1=1;
 	}
 	public bbox(int x,int y,int w,int h) {
 		this.x=x;
 		this.y=y;
 		this.w=w;
 		this.h=h;
+		x1=x+w;
+		y1=y+h;
 	}
 	public static bbox makeBBox(ArrayList<Point2D> v) {
 		if (v.isEmpty())
@@ -43,6 +47,26 @@ public class bbox{
 		int x1=o.x+o.w;
 		int y1=o.y+o.h;
 		return within(o.x,o.y)||within(x1,o.y)||within(o.x,y1)||within(x1,y1);
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if(!(other instanceof bbox))
+			return false;
+		bbox o = (bbox)other;
+		return o.x==x&&o.y==y&&o.w==w&&o.h==h;
+	}
+	
+	public String toString() {
+		return "x: "+x+" y: "+y+" w: "+w+" h: "+h;
+	}
+	@Override
+	public int hashCode() {
+		return x+y<<8+w<<16+h<<24;
 	}
 	
 }
